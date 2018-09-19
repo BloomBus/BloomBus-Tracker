@@ -26,56 +26,17 @@
         navigator.serviceWorker.register('service-worker.js');
       }
     </script>
+    <script src="script.js" defer/>
   </head>
   <body>
       <p id="coords"></p>
-      <select id="shuttle-type">
+      <label for="shuttle-type">Shuttle Type:</label>
+      <select id="shuttle-type" name="shuttle-type">
         <option value="campus">Campus Loop</option>
         <option value="walmart">Wal-Mart</option>
         <option value="downtown">Downtown Loop</option>
         <option value="honeysuckle">Honeysuckle</option>
         <option value="latenight">Late Night Shuttle</option>
       </select>
-      <script>
-        const coordsRef = document.getElementById('coords');
-        const shuttleTypeRef = document.getElementById('shuttle-type');
-    
-        function geo_success(position) {
-          const updates = {};
-          const shuttleType = shuttleTypeRef.options[shuttleTypeRef.selectedIndex];
-          updates['/shuttles/' + shuttleType.value] = {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": [parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)]
-            },
-            "properties": {
-              "name": shuttleType.text,
-              "timestamp": Date.now()
-            }
-          };
-          coordsRef.innerHTML = `${position.coords.latitude}, ${position.coords.longitude}`;
-          return firebase.database().ref().update(updates);
-        }
-    
-        function geo_error() {
-          console.log("No position available.");
-        }
-    
-        var geo_options = {
-          enableHighAccuracy: true, 
-          maximumAge        : 30000,
-          timeout           : 27000
-        };    
-    
-        if ("geolocation" in navigator) {
-          /* geolocation is available */
-          document.write('<p class="good">geolocation available</p>');
-          const wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
-        } else {
-          /* geolocation IS NOT available */
-          document.writeln('<p class="bad">geolocation available</p>');
-        }
-      </script>
   </body>
 </html>
