@@ -1,6 +1,6 @@
 {
-  "name": "Bloombus Shuttle Tracker",
-  "short_name": "Shuttle Tracker",
+  "name": "Bloombus Tracker",
+  "short_name": "Bus Tracker",
   "theme_color": "#760019",
   "background_color": "#610014",
   "display": "standalone",
