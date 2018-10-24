@@ -22,7 +22,8 @@ const PRECACHE_URLS = [
   'index.html',
   './', // Alias for index.html
   'style/style.css',
-  'script/script.js',
+  'script/geoMap.js',
+  'script/uuidv4.min.js'
 ];
 
 // The install handler takes care of precaching the resources we always need.
