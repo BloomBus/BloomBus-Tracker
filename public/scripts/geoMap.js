@@ -10,12 +10,18 @@ geoBtn.onclick = function () {
 
 const uuid = uuidv4();
 
+let latlng = new google.maps.LatLng(41, -76.447);
 const myOptions = {
   zoom: 16,
   center: latlng,
   mapTypeId: google.maps.MapTypeId.ROADMAP,
 };
 const map = new google.maps.Map(mapCanvas, myOptions);
+let marker = new google.maps.Marker({
+  position: latlng,
+  map,
+  title: markerTitle,
+});
 
 function report(state) {
   console.log(`Permission: ${state}`);
@@ -30,13 +36,8 @@ const revealPosition = (position) => {
   geoBtn.style.display = 'none';
   const markerTitle = 'You are here';
 
-  const latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);  
-
-  const marker = new google.maps.Marker({
-    position: latlng,
-    map,
-    title: markerTitle,
-  });
+  latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  marker.setPosition(latlng);
 
   const updates = {};
   const shuttleLoop = shuttleLoopRef.options[shuttleLoopRef.selectedIndex];
