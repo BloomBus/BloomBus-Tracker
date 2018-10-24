@@ -22,6 +22,7 @@ let marker = new google.maps.Marker({
   position: latlng,
   map,
   title: markerTitle,
+  label: markerTitle,
 });
 
 function report(state) {
