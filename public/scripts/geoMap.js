@@ -10,6 +10,13 @@ geoBtn.onclick = function () {
 
 const uuid = uuidv4();
 
+const myOptions = {
+  zoom: 16,
+  center: latlng,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+};
+const map = new google.maps.Map(mapCanvas, myOptions);
+
 function report(state) {
   console.log(`Permission: ${state}`);
 }
@@ -23,14 +30,7 @@ const revealPosition = (position) => {
   geoBtn.style.display = 'none';
   const markerTitle = 'You are here';
 
-  const latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  const myOptions = {
-    zoom: 16,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-  };
-
-  const map = new google.maps.Map(mapCanvas, myOptions);
+  const latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);  
 
   const marker = new google.maps.Marker({
     position: latlng,
