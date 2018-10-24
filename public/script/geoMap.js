@@ -17,6 +17,7 @@ const myOptions = {
   mapTypeId: google.maps.MapTypeId.ROADMAP,
 };
 const map = new google.maps.Map(mapCanvas, myOptions);
+const markerTitle = 'You are here';
 let marker = new google.maps.Marker({
   position: latlng,
   map,
@@ -34,7 +35,6 @@ const positionDenied = function () {
 const revealPosition = (position) => {
   console.log(position);
   geoBtn.style.display = 'none';
-  const markerTitle = 'You are here';
 
   latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   marker.setPosition(latlng);
@@ -52,7 +52,7 @@ const revealPosition = (position) => {
       timestamp: position.timestamp,
       speed: position.coords.speed,
       altitude: position.coords.altitude,
-      loop: shuttleLoop
+      loop: shuttleLoop,
     },
   };
   return firebase.database().ref().update(updates);
