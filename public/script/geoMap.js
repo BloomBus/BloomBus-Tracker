@@ -38,6 +38,7 @@ const revealPosition = (position) => {
 
   latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   marker.setPosition(latlng);
+  map.setCenter(latlng);
 
   const updates = {};
   const shuttleLoop = shuttleLoopRef.options[shuttleLoopRef.selectedIndex];
