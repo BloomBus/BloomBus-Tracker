@@ -8,9 +8,9 @@ geoBtn.onclick = function () {
   console.log('In Firefox it is done with Tools > Page Info > Permissions > Access Your Location.');
 };
 
-const uuid = uuidv4();
-
+let uuid = uuidv4();
 let latlng = new google.maps.LatLng(41, -76.447);
+
 const myOptions = {
   zoom: 16,
   center: latlng,
@@ -33,10 +33,15 @@ const positionDenied = function () {
   geoBtn.style.display = 'inline';
 };
 
+const onLoopChange = (event) => {
+  uuid = uuidv4(); // Generate new UUID for shuttle, causes old shuttle node to be reaped after timeout
+}
+
 const revealPosition = (position) => {
   console.log(position);
   geoBtn.style.display = 'none';
 
+  prevCoordinates = [latlng.lat(), latlng.lng()];
   latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   marker.setPosition(latlng);
   map.setCenter(latlng);
@@ -55,6 +60,7 @@ const revealPosition = (position) => {
       speed: position.coords.speed,
       altitude: position.coords.altitude,
       loop: shuttleLoop,
+      prevCoordinates
     },
   };
   return firebase.database().ref().update(updates);
