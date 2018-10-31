@@ -8,10 +8,8 @@ geoBtn.onclick = function () {
   console.log('In Firefox it is done with Tools > Page Info > Permissions > Access Your Location.');
 };
 
-let interval;
-
 let uuid = uuidv4();
-let latlng = new google.maps.LatLng(41, -76.447);
+let latlng;
 
 const myOptions = {
   zoom: 16,
@@ -86,7 +84,7 @@ function handlePermission() {
     if (result.state === 'granted') {
       report(result.state);
       geoBtn.style.display = 'none';
-      clearInterval(interval);
+      navigator.geolocation.watchPosition(revealPosition, positionDenied, geoSettings);
     } else if (result.state === 'prompt') {
       report(result.state);
       navigator.geolocation.watchPosition(revealPosition, positionDenied, geoSettings);
@@ -100,4 +98,4 @@ function handlePermission() {
   });
 }
 
-interval = setInterval(handlePermission, 1000);
+handlePermission();
