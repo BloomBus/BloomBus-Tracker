@@ -41,7 +41,7 @@ const revealPosition = (position) => {
   console.log(position);
   geoBtn.style.display = 'none';
 
-  prevCoordinates = [latlng.lat(), latlng.lng()];
+  const prevCoordinates = [latlng.lat(), latlng.lng()];
   latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   marker.setPosition(latlng);
   map.setCenter(latlng);
