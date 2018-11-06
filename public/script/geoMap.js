@@ -10,6 +10,7 @@ geoBtn.onclick = function () {
 
 let uuid = uuidv4();
 let latlng;
+let paused = false;
 
 const myOptions = {
   zoom: 16,
@@ -38,10 +39,14 @@ const onLoopChange = (event) => {
 }
 
 const revealPosition = (position) => {
+  if (paused) return;
+
   console.log(position);
   geoBtn.style.display = 'none';
 
-  const prevCoordinates = [latlng.lat(), latlng.lng()];
+  if (latlng) {
+    var prevCoordinates = [latlng.lat(), latlng.lng()];
+  }
   latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   marker.setPosition(latlng);
   map.setCenter(latlng);
@@ -96,6 +101,14 @@ function handlePermission() {
       report(result.state);
     };
   });
+}
+
+function togglePause() {
+  paused = !paused;
+  const pauseRef = document.getElementById('pause');
+  console.log(paused);
+  pauseRef.classList.remove(paused ? 'fa-pause' : 'fa-play');
+  pauseRef.classList.add(paused ? 'fa-play' : 'fa-pause');
 }
 
 handlePermission();

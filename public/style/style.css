@@ -44,6 +44,13 @@ h1 {
   color: white;
 }
 
+#pause {
+  height: 5rem;
+  width: 5rem;
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+
 #shuttle-type {
   font-size: 1.6rem;
   height: 5rem;
