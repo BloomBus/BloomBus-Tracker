@@ -60,7 +60,8 @@ const revealPosition = (position) => {
       coordinates: [parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)],
     },
     properties: {
-      name: shuttleLoop.text,
+      loopKey: shuttleLoop.value,
+      loopDisplayName: shuttleLoop.text,
       timestamp: position.timestamp,
       speed: position.coords.speed,
       altitude: position.coords.altitude,
