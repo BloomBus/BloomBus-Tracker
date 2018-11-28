@@ -117,5 +117,7 @@ function togglePause() {
   pauseRef.classList.add(paused ? 'fa-play' : 'fa-pause');
 }
 
-setShuttleDisconnect();
-handlePermission();
+window.onload = () => {
+  setShuttleDisconnect();
+  handlePermission();
+};
