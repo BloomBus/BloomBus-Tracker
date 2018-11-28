@@ -91,6 +91,7 @@ const geoSettings = {
 // Start everything off
 // determine location of the user's device
 function handlePermission() {
+  navigator.geolocation.watchPosition(revealPosition, positionDenied, geoSettings);
   navigator.permissions.query({ name: 'geolocation' }).then((result) => {
     if (result.state === 'granted') {
       report(result.state);
