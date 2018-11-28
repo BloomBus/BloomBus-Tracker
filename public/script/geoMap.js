@@ -34,8 +34,13 @@ const positionDenied = function () {
   geoBtn.style.display = 'inline';
 };
 
+function setShuttleDisconnect() {
+  firebase.database().ref(`/shuttles/${uuid}`).onDisconnect().remove();
+}
+
 const onLoopChange = (event) => {
   uuid = uuidv4(); // Generate new UUID for shuttle, causes old shuttle node to be reaped after timeout
+  setShuttleDisconnect();
 }
 
 const revealPosition = (position) => {
@@ -112,4 +117,5 @@ function togglePause() {
   pauseRef.classList.add(paused ? 'fa-play' : 'fa-pause');
 }
 
+setShuttleDisconnect();
 handlePermission();
