@@ -119,6 +119,7 @@ function togglePause() {
 }
 
 window.onload = () => {
+  alert("Here");
   setShuttleDisconnect();
   handlePermission();
 };
