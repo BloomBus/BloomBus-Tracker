@@ -119,7 +119,9 @@ function togglePause() {
 }
 
 window.onload = () => {
-  alert("Here");
-  setShuttleDisconnect();
-  handlePermission();
+  document.getElementById('enable-geolocation').addEventListener('click', () => {
+    alert("Here");
+    setShuttleDisconnect();
+    handlePermission();
+  });
 };
