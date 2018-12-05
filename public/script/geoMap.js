@@ -70,7 +70,6 @@ const revealPosition = (position) => {
       timestamp: position.timestamp,
       speed: position.coords.speed,
       altitude: position.coords.altitude,
-      loop: shuttleLoop,
       prevCoordinates
     },
   };
